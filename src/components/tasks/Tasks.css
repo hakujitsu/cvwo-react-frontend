@@ -1,0 +1,36 @@
+
+/* Tasklist */
+
+  .taskname{
+    font-size: 14px;
+  }
+  
+  .tag{
+    font-size: 12px;
+    color: #9F9F9F;
+  }
+  
+  /* Others */
+  .edit{
+    float: right;
+    height: 17px;
+    width: auto;
+    vertical-align: middle;
+    fill: #9F9F9F;
+    padding-right: 10px;
+  }
+  
+  .delete{
+    float:right;
+    height: 20px;
+    width: auto;
+    vertical-align: middle;
+    fill: #9F9F9F;
+  }
+  
+  hr {
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  }

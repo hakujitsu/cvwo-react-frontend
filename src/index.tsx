@@ -7,10 +7,10 @@ import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux'
 import {createStore} from 'redux'
 import TaskList from './redux/tasks/reducers'
-const TaskStore = createStore(TaskList)
+const store = createStore(TaskList)
 
 ReactDOM.render(
-    <Provider TaskStore={TaskStore}>
+    <Provider store={store}>
         <App />
     </Provider>
 
