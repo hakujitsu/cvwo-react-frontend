@@ -4,8 +4,9 @@ import { Tasks } from '../tasks/Tasks'
 
 // Describes how to transform the current Redux store state into 
 // the props you want to pass to a presentational component you are wrapping
-const mapStateToProps = (state:TaskListState) => ({
-    tasks: state.tasks
+const mapStateToProps = (state: {taskReducer: TaskListState}) => void console.log({
+    state}) || ({
+    tasks: state.taskReducer.tasks
 })
 
 // For actions to get back to the state, to edit l8r
