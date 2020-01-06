@@ -1,6 +1,6 @@
 import React from 'react';
 import './Tasklist.css';
-import Connector from '../containers/GetTasks'
+import { Connector } from '../containers/GetTasks'
 
 class Tasklist extends React.Component {
     render() {
