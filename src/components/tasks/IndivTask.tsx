@@ -4,6 +4,7 @@ import edit from '../../svgs/edit.svg';
 import './Tasks.css';
 import { ITask } from '../../redux/tasks/types'
 import IndivTag from './IndivTag'
+import DeleteTask from './actions/DeleteTask'
 
 type Props = ITask;
 
@@ -12,7 +13,7 @@ const IndivTask:React.FC<Props> = (props:Props) => {
         <div className = "task">
             <input type = "checkbox"/>
             <span className = "taskname">{props.name}</span>
-            <img className = "delete" src = {deletes} alt=""/>
+            <DeleteTask/>
             <img className = "edit" src = {edit} alt=""/>
             <div>
             {

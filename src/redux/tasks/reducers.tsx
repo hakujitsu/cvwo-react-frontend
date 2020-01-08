@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux';
 import {
-    TaskListState,
+    TaskTagListState,
     TaskActionTypes,
     ITask,
+    ITag,
     ADD_TODO,
     TOGGLE_TODO,
     SET_VISIBILITY_FILTER,
@@ -11,7 +12,7 @@ import {
 
 
 //INITIAL STATE
-const initialState:TaskListState = {
+const initialState:TaskTagListState = {
     tasks: [
         {
             name: "Do CVWO Task",
@@ -28,12 +29,20 @@ const initialState:TaskListState = {
             done: false,
             tag: [""]
         }
+    ],
+    tags: [
+        {
+            name: "Important"
+        },
+        {
+            name: "Work"
+        }
     ]
 }
 
 //HANDLES ACTIONS MADE TO STATE, RETURNS STATE
 export function taskReducer(state = initialState, action: TaskActionTypes)
-    : TaskListState {
+    : TaskTagListState {
         switch(action.type){
             case ADD_TODO:
                 let newTask:ITask = {
@@ -41,7 +50,8 @@ export function taskReducer(state = initialState, action: TaskActionTypes)
                     done: false
                 }
                 return {
-                    tasks: [...state.tasks, newTask]
+                    tasks: [...state.tasks, newTask],
+                    tags: []
                 }
             default:
                 return state

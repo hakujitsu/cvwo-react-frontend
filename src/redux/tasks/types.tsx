@@ -11,8 +11,13 @@ export interface ITask{
     // id: number
 }
 
-export interface TaskListState {
+export interface ITag{
+    name: string
+}
+
+export interface TaskTagListState {
     tasks: ITask[]
+    tags: ITag[]
 }
 // Perhaps create another interface for filtering tasks????
 

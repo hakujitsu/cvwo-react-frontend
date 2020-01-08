@@ -1,13 +1,7 @@
-import { ITask } from '../../redux/tasks/types'
-//p1 imports above
-
 import React from 'react';
-import deletes from '../../svgs/delete.svg';
-import edit from '../../svgs/edit.svg';
 import './Tasks.css';
-import './IndivTask';
+import { ITask } from '../../redux/tasks/types'
 import IndivTask from './IndivTask';
-// p2 imports above
 
 type Props = {
     tasks: ITask[];
