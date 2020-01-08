@@ -6,7 +6,7 @@ export const DELETE_TODO = 'DELETE_TODO'
 export interface ITask{
     name: string
     done: boolean
-    // tag?: string[]
+    tag?: string[]
     // date?: Date
     // id: number
 }

@@ -16,14 +16,17 @@ const initialState:TaskListState = {
         {
             name: "Do CVWO Task",
             done: true,
+            tag: ["Important", "Work"]
         },
         {
             name: "Play Celeste",
             done: false,
+            tag: ["Important"]
         },
         {
             name: "Sleep",
             done: false,
+            tag: [""]
         }
     ]
 }
