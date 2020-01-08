@@ -25,10 +25,12 @@ export const Tasks: React.FC<Props> = (props:Props) => {
     console.log(tasks);
     return (
         <div>
+            <pre>
         {   
-            tasks
+            JSON.stringify(tasks, null, 2)
             
         }
+                    </pre>
         </div>
     )
 }

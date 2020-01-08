@@ -7,7 +7,15 @@ import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux'
 import {createStore} from 'redux'
 import TaskList from './redux/tasks/reducers'
-const store = createStore(TaskList)
+
+// add redux devtools extension key for typescript
+declare global {
+    interface Window { __REDUX_DEVTOOLS_EXTENSION__: Function | undefined }
+}
+const store = createStore(TaskList,
+      window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+)
+
 
 ReactDOM.render(
     <Provider store={store}>
