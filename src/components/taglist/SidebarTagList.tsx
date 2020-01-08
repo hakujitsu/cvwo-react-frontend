@@ -9,7 +9,6 @@ type Props = {
 
 export const SidebarTagList: React.FC<Props> = (props:Props) => {
     const { tags } = props;
-    console.log(tags);
     return (
         <div className = "sidebar_tags">
             <div className = "sb_tag_title">

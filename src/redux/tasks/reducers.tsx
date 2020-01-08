@@ -4,6 +4,7 @@ import {
     TaskActionTypes,
     ITask,
     ITag,
+    ITagOptions,
     ADD_TODO,
     TOGGLE_TODO,
     SET_VISIBILITY_FILTER,
@@ -37,6 +38,18 @@ const initialState:TaskTagListState = {
         {
             name: "Work"
         }
+    ],
+    tagoptions:[
+        {
+            key: "Important",
+            text: "Important",
+            value: "Important"
+        },
+        {
+            key: "Work",
+            text: "Work",
+            value: "Work"
+        },
     ]
 }
 
@@ -51,7 +64,8 @@ export function taskReducer(state = initialState, action: TaskActionTypes)
                 }
                 return {
                     tasks: [...state.tasks, newTask],
-                    tags: []
+                    tags: [],
+                    tagoptions: []
                 }
             default:
                 return state

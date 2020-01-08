@@ -3,7 +3,7 @@ import all from '../../svgs/all.svg';
 import today from '../../svgs/today.svg';
 import thisweek from '../../svgs/thisweek.svg';
 import './Sidebar.css';
-import  { TagConnector } from '../containers/GetTags';
+import  { SidebarTagConnector } from '../containers/GetStore';
 
 class Sidebar extends React.Component {
     render() {
@@ -26,7 +26,7 @@ class Sidebar extends React.Component {
                 </div>
 
             </div>
-            <TagConnector/>
+            <SidebarTagConnector/>
         </div>
         );
     }

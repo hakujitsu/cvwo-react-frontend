@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Header from './components/header/Header';
 import Sidebar from './components/sidebar/Sidebar';
-import Tasklist from './components/tasklist/Tasklist';
+import { TasklistConnector } from './components/containers/GetStore';
 
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
 
         <Sidebar/>
         
-        <Tasklist/>
+        <TasklistConnector/>
         
       </div>
  

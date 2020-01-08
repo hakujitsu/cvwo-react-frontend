@@ -15,9 +15,16 @@ export interface ITag{
     name: string
 }
 
+export interface ITagOptions{
+    key: string,
+    text: string,
+    value: string
+}
+
 export interface TaskTagListState {
     tasks: ITask[]
     tags: ITag[]
+    tagoptions: ITagOptions[]
 }
 // Perhaps create another interface for filtering tasks????
 

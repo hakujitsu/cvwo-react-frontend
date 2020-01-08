@@ -1,29 +1,21 @@
-import React, { Component } from "react";
-import { Button, Modal } from "semantic-ui-react";
-import deletes from '../../../svgs/delete.svg'
+import React from 'react'
+import { Button, Modal } from 'semantic-ui-react'
 
-class DeleteTask extends Component {
-  render() {
-    return (
-      <div>
-        <Modal size={"mini"} trigger={<img className = "delete" src = {deletes} alt=""/>}>
-          <Modal.Header>Delete Task</Modal.Header>
-          <Modal.Content>
-            <p>Are you sure you want to delete this task?</p>
-          </Modal.Content>
-          <Modal.Actions>
-            <Button negative>No</Button>
-            <Button
-              positive
-              icon="checkmark"
-              labelPosition="right"
-              content="Yes"
-            />
-          </Modal.Actions>
-        </Modal>
-      </div>
-    );
-  }
-}
+const ModalScrollingExample = () => (
+  <Modal trigger={<Button>Add Tag</Button>}>
+    <Modal.Header>Add Task</Modal.Header>
+    <Modal.Content>
+      <Modal.Description>
+        <p>
+          Put form in here
+        </p>
+      </Modal.Description>
+    </Modal.Content>
+    <Modal.Actions>
+      <Button positive>Confirm</Button>
+      <Button negative>Cancel</Button>
+    </Modal.Actions>
+  </Modal>
+)
 
-export default DeleteTask;
+export default ModalScrollingExample
