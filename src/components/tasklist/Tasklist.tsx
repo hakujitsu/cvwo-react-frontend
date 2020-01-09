@@ -7,7 +7,7 @@ import { Button, Modal, Form, Dropdown } from 'semantic-ui-react'
 type Props = {
     tags: ITag[]
     tagoptions: ITagOptions[]
-    addTask: () => ITask
+    addTask: () => void
 }
 
 type State = {
