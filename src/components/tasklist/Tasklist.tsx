@@ -4,16 +4,34 @@ import { ITask, ITag, ITagOptions } from '../../redux/tasks/types'
 import { TaskConnector } from '../containers/GetStore'
 import { Button, Modal, Form, Dropdown } from 'semantic-ui-react'
 
-
 type Props = {
     tags: ITag[]
     tagoptions: ITagOptions[]
+    addTask: Function
 }
 
-export const Tasklist: React.FC<Props> = (props:Props) => {
-    const { tags, tagoptions } = props;
-    console.log(tags);
-  
+type State = {
+    showModal: boolean
+}
+
+export class Tasklist extends React.Component<Props, State>  {
+    constructor(props:Props){
+        super(props)
+        this.state = {
+            showModal: false
+        }
+    }
+
+    closeModal = () => {
+        this.setState({ showModal: false })
+    }
+    
+    render() {
+
+        const {
+            showModal
+          } = this.state
+
     return (
         <div className = "main">
         <div className = "taskheader">Today</div>
@@ -21,7 +39,8 @@ export const Tasklist: React.FC<Props> = (props:Props) => {
         <div className = "tasklist">
             <TaskConnector/>
 
-            <Modal size={"small"} trigger={<div className = "addtask"> Add task </div>}>
+            <Modal onClose={this.closeModal} open={showModal} size={"small"} 
+            trigger={<div className = "addtask" onClick={() => this.setState({ showModal: true })}> Add task </div>}>
                 <Modal.Header>Add Task</Modal.Header>
                 <Modal.Content>
                     <Modal.Description>
@@ -31,16 +50,17 @@ export const Tasklist: React.FC<Props> = (props:Props) => {
                                     <input />
                             </Form.Field>
                             <label><strong>Tags</strong></label>
-                            <Dropdown fluid multiple selection options={tagoptions} />
+                            <Dropdown fluid multiple selection options={this.props.tagoptions} />
                         </Form>
                     </Modal.Description>
                 </Modal.Content>
                 <Modal.Actions>
-                    <Button positive>Confirm</Button>
-                    <Button negative>Cancel</Button>
+                    <Button positive onClick={() => this.setState({ showModal: false })}>Confirm</Button>
+                    <Button negative onClick={() => this.setState({ showModal: false })}>Cancel</Button>
                 </Modal.Actions>
             </Modal>
         </div>
     </div>
     )
+    }
 }
