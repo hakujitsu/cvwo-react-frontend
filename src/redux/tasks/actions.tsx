@@ -1,5 +1,6 @@
 import { 
-    TaskActionTypes, 
+    TaskActionTypes,
+    ITask, 
     ADD_TODO, 
     TOGGLE_TODO, 
     SET_VISIBILITY_FILTER, 
@@ -18,9 +19,9 @@ export const VisibilityFilters = {
 /*
  * action creators
  */
-export function addTodo(newname:string):TaskActionTypes {
+export function addTodo(newtask:ITask):TaskActionTypes {
   return { type: ADD_TODO, 
-           name: newname
+           newTask: newtask
   }
 }
 export function toggleTodo(index:number):TaskActionTypes {

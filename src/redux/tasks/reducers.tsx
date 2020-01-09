@@ -58,12 +58,8 @@ export function taskReducer(state = initialState, action: TaskActionTypes)
     : TaskTagListState {
         switch(action.type){
             case ADD_TODO:
-                let newTask:ITask = {
-                    name: action.name,
-                    done: false
-                }
                 return {
-                    tasks: [...state.tasks, newTask],
+                    tasks: [...state.tasks, action.newTask],
                     tags: [],
                     tagoptions: []
                 }

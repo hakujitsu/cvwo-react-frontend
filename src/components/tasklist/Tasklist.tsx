@@ -1,38 +1,58 @@
 import React from 'react';
 import './Tasklist.css';
-import { ITask, ITag, ITagOptions } from '../../redux/tasks/types'
+import { ITask, ITag, ITagOptions, TaskActionTypes } from '../../redux/tasks/types'
 import { TaskConnector } from '../containers/GetStore'
 import { Button, Modal, Form, Dropdown } from 'semantic-ui-react'
 
 type Props = {
     tags: ITag[]
     tagoptions: ITagOptions[]
-    addTask: Function
+    addTask: () => ITask
 }
 
 type State = {
     showModal: boolean
+    newTaskName: string
+    newTaskTags: string[]
 }
 
 export class Tasklist extends React.Component<Props, State>  {
     constructor(props:Props){
         super(props)
         this.state = {
-            showModal: false
+            showModal: false,
+            newTaskName: "",
+            newTaskTags: []
         }
     }
-
-    // confirmTask = () ={
-
-    // }
 
     closeModal = () => {
         this.setState({ showModal: false })
     }
     
+    newTaskNameInput(input:string){
+        this.setState({newTaskName: input});
+    }
+
+    newTaskTagInput(tags:any){
+        this.setState({newTaskTags: tags});
+    }
+
+    createTask(newname:string, newtags:string[]){
+        let newTask:ITask = {
+            name: newname,
+            done: false,
+            tag: newtags,
+        }
+        console.log(newTask);
+        // addTask(newTask);
+    }
+
     render() {
         const {
-            showModal
+            showModal,
+            newTaskName,
+            newTaskTags
         } = this.state
 
     return (
@@ -50,15 +70,16 @@ export class Tasklist extends React.Component<Props, State>  {
                         <Form>
                             <Form.Field>
                                 <div><strong>Task Name</strong></div>
-                                    <input />
+                                    <input onChange={(e) => this.newTaskNameInput(e.target.value)} />
                             </Form.Field>
                             <label><strong>Tags</strong></label>
-                            <Dropdown fluid multiple selection options={this.props.tagoptions} />
+                            <Dropdown onChange={(e, { value }) => this.newTaskTagInput({value})}
+                            fluid multiple selection options={this.props.tagoptions} />
                         </Form>
                     </Modal.Description>
                 </Modal.Content>
                 <Modal.Actions>
-                    <Button positive onClick={() => {this.closeModal()}}>Confirm</Button>
+                    <Button positive onClick={() => {this.closeModal(); this.createTask(newTaskName, newTaskTags)}}>Confirm</Button>
                     <Button negative onClick={() => this.closeModal()}>Cancel</Button>
                 </Modal.Actions>
             </Modal>

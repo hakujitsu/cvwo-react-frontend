@@ -6,7 +6,7 @@ export const DELETE_TODO = 'DELETE_TODO'
 export interface ITask{
     name: string
     done: boolean
-    tag?: string[]
+    tag: string[]
     // date?: Date
     // id: number
 }
@@ -32,7 +32,7 @@ export interface TaskTagListState {
 // Action Interfaces
 interface AddTodoAction {
     type: typeof ADD_TODO
-    name: string
+    newTask: ITask
 }
 
 interface ToggleTodoAction {

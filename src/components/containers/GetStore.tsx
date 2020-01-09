@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { TaskTagListState, ITask } from '../../redux/tasks/types'
+import { TaskActionTypes, TaskTagListState, ITask } from '../../redux/tasks/types'
 import { SidebarTagList } from '../taglist/SidebarTagList'
 import { Tasks } from '../tasks/Tasks'
 import { Tasklist } from '../tasklist/Tasklist'
@@ -15,9 +15,8 @@ const mapStateToProps = (state: {taskReducer: TaskTagListState}) => void console
     tagoptions: state.taskReducer.tagoptions
 })
 
-// For actions to get back to the state, to edit l8r
 const mapDispatchToProps = {
-    addTask: addTodo
+    addTask: addTodo,
 }
 
 export const TaskConnector = connect(mapStateToProps, mapDispatchToProps)(Tasks)
