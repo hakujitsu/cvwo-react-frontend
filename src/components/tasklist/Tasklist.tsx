@@ -22,15 +22,18 @@ export class Tasklist extends React.Component<Props, State>  {
         }
     }
 
+    // confirmTask = () ={
+
+    // }
+
     closeModal = () => {
         this.setState({ showModal: false })
     }
     
     render() {
-
         const {
             showModal
-          } = this.state
+        } = this.state
 
     return (
         <div className = "main">
@@ -55,8 +58,8 @@ export class Tasklist extends React.Component<Props, State>  {
                     </Modal.Description>
                 </Modal.Content>
                 <Modal.Actions>
-                    <Button positive onClick={() => this.setState({ showModal: false })}>Confirm</Button>
-                    <Button negative onClick={() => this.setState({ showModal: false })}>Cancel</Button>
+                    <Button positive onClick={() => {this.closeModal()}}>Confirm</Button>
+                    <Button negative onClick={() => this.closeModal()}>Cancel</Button>
                 </Modal.Actions>
             </Modal>
         </div>
