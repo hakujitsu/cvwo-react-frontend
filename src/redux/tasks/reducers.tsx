@@ -28,7 +28,7 @@ const initialState:TaskTagListState = {
         {
             name: "Sleep",
             done: false,
-            tag: [""]
+            tag: []
         }
     ],
     tags: [
@@ -60,8 +60,8 @@ export function taskReducer(state = initialState, action: TaskActionTypes)
             case ADD_TODO:
                 return {
                     tasks: [...state.tasks, action.newTask],
-                    tags: [],
-                    tagoptions: []
+                    tags: state.tags,
+                    tagoptions: state.tagoptions
                 }
             default:
                 return state

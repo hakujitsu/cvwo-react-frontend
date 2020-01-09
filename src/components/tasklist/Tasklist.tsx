@@ -7,7 +7,7 @@ import { Button, Modal, Form, Dropdown } from 'semantic-ui-react'
 type Props = {
     tags: ITag[]
     tagoptions: ITagOptions[]
-    addTask: () => void
+    addTask: (arg1:ITask) => void
 }
 
 type State = {
@@ -35,7 +35,12 @@ export class Tasklist extends React.Component<Props, State>  {
     }
 
     newTaskTagInput(tags:any){
-        this.setState({newTaskTags: tags});
+        console.log(tags);
+        let newtags:string[] = [];
+        for(let i = 0; i < tags.value.length; i++){
+            newtags.push(tags.value[i]);
+        }
+        this.setState({newTaskTags: newtags});
     }
 
     createTask(newname:string, newtags:string[]){
@@ -45,7 +50,7 @@ export class Tasklist extends React.Component<Props, State>  {
             tag: newtags,
         }
         console.log(newTask);
-        // addTask(newTask);
+        this.props.addTask(newTask);
     }
 
     render() {

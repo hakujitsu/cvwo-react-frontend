@@ -87,7 +87,7 @@ export class IndivTask extends React.Component<Props, State>  {
                 </div>
                 <div>
                 {
-                    this.props.task.tag!.map((tag: string, index: number) => {
+                    this.props.task.tag.map((tag: string, index: number) => {
                         return (
                             <IndivTag key = {index} tagname={tag}/>   
                         )}

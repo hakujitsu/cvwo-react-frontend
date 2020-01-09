@@ -9,7 +9,7 @@ class Sidebar extends React.Component {
     render() {
       return (
         <div className = "sidebar">
-            <div className = "default_sidebar">
+            {/* <div className = "default_sidebar">
                 <div className = "default_options">
                     <img className = "icon" src ={all} alt=""></img>
                     <span className = "sb">All</span>
@@ -25,7 +25,7 @@ class Sidebar extends React.Component {
                     <span className = "sb">This Week</span>
                 </div>
 
-            </div>
+            </div> */}
             <SidebarTagConnector/>
         </div>
         );
