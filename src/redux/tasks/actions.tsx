@@ -1,10 +1,14 @@
 import { 
     TaskActionTypes,
+    TagActionTypes,
     ADD_TODO, 
     DELETE_TODO,
     EDIT_TODO,
     TOGGLE_TODO, 
-    SET_VISIBILITY_FILTER, 
+    SET_VISIBILITY_FILTER,
+    ADD_TAG,
+    DELETE_TAG,
+    EDIT_TAG 
 } from './types'
 
 
@@ -16,9 +20,8 @@ export const VisibilityFilters = {
   // do we keep this in actions?
 }
 
-/*
- * action creators
- */
+
+//  ACTION CREATORS
 export function addTodo(newname:string, newtag:string[]):TaskActionTypes {
   return { type: ADD_TODO, 
            newname: newname,
@@ -46,6 +49,24 @@ export function toggleTodo(index:string):TaskActionTypes {
 export function setVisibilityFilter(filter:string):TaskActionTypes {
   return { type: SET_VISIBILITY_FILTER, 
            filter: filter 
+  }
+}
+
+export function addTag(newname:string):TagActionTypes {
+  return { type: ADD_TAG, 
+           newname: newname,
+  }
+}
+export function deleteTag(index:string):TagActionTypes{
+  return {type: DELETE_TAG, 
+          id: index
+  }
+}
+
+export function editTag(newname:string, index:string):TagActionTypes{
+  return { type: EDIT_TAG, 
+           newname: newname,
+           id: index
   }
 }
 

@@ -1,10 +1,15 @@
+// ACTION TYPES
 export const ADD_TODO = 'ADD_TODO'
 export const DELETE_TODO = 'DELETE_TODO'
 export const EDIT_TODO = 'EDIT_TODO'
 export const TOGGLE_TODO = 'TOGGLE_TODO'
 export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER'
 
+export const ADD_TAG = 'ADD_TAG'
+export const DELETE_TAG = 'DELETE_TAG'
+export const EDIT_TAG = 'EDIT_TAG'
 
+// OBJECT INTERFACES
 export interface ITask{
     name: string
     done: boolean
@@ -14,6 +19,7 @@ export interface ITask{
 
 export interface ITag{
     name: string
+    id: string
 }
 
 export interface ITagOptions{
@@ -30,7 +36,8 @@ export interface TaskTagListState {
 // Perhaps create another interface for filtering tasks????
 
 
-// Action Interfaces
+
+// ACTION INTERFACES 
 interface AddTodoAction {
     type: typeof ADD_TODO
     newname: string,
@@ -59,7 +66,23 @@ interface SetVisibilityFilterAction {
     filter: string
 }
 
+interface AddTagAction {
+    type: typeof ADD_TAG
+    newname: string,
+}
+
+interface DeleteTagAction {
+    type: typeof DELETE_TAG
+    id: string
+}
+
+interface EditTagAction{
+    type: typeof EDIT_TAG
+    newname: string,
+    id: string
+}
 
 
 export type TaskActionTypes = AddTodoAction | ToggleTodoAction | SetVisibilityFilterAction | DeleteTodoAction | EditTodoAction
+export type TagActionTypes = AddTagAction | DeleteTagAction | EditTagAction
 

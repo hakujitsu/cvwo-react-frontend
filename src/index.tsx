@@ -5,7 +5,8 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 import { Provider } from 'react-redux'
-import {createStore} from 'redux'
+import { createStore} from 'redux'
+import { configureStore } from "@reduxjs/toolkit";
 import TaskList from './redux/tasks/reducers'
 
 // add redux devtools extension key for typescript

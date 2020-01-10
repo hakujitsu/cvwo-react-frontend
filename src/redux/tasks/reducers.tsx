@@ -2,12 +2,17 @@ import { combineReducers } from 'redux';
 import {
     TaskTagListState,
     TaskActionTypes,
+    TagActionTypes,
     ITask,
+    ITag,
     ADD_TODO,
     EDIT_TODO,
     DELETE_TODO,
     TOGGLE_TODO,
     SET_VISIBILITY_FILTER,
+    ADD_TAG,
+    DELETE_TAG,
+    EDIT_TAG 
 } from './types'
 const uuidv1 = require('uuid/v1');
 
@@ -37,10 +42,12 @@ const initialState:TaskTagListState = {
     ],
     tags: [
         {
-            name: "Important"
+            name: "Important",
+            id: "0e7762f0-338a-11ea-872e-1d7406f7a6ab"
         },
         {
-            name: "Work"
+            name: "Work",
+            id: "0e778a01-338a-11ea-872e-1d7406f7a6ab"
         }
     ],
     tagoptions:[
@@ -101,10 +108,39 @@ export function taskReducer(state = initialState, action: TaskActionTypes)
         }
 }
 
+export function tagReducer(state = initialState, action: TagActionTypes)
+    : TaskTagListState {
+        switch(action.type){
+            case ADD_TAG:
+                let newTag:ITag = {
+                    name: action.newname,
+                    id: uuidv1(),
+                }
+                state.tags.push(newTag)
+                return {
+                    tasks: state.tasks,
+                    tags: state.tags,
+                    tagoptions: state.tagoptions
+                }
+            case DELETE_TAG:
+                console.log("reducer");
+                let newTags = state.tags.filter(tag => tag.id !== action.id);
+                console.log(newTags);
+                return {
+                    tasks: state.tasks,
+                    tags: newTags,
+                    tagoptions: state.tagoptions
+                }
+            default:
+                return state
+        }
+}
+
 //create another reducer for the filtering, then combine the reducers
 
 const TaskList = combineReducers({
-    taskReducer
+    taskReducer,
+    tagReducer
 })
 
 export default TaskList
