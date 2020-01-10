@@ -8,7 +8,7 @@ import 'semantic-ui-css/semantic.min.css';
 type Props =  {
     tag:ITag
     editTag: (newname:string, index:string) => void
-    deleteTag: (index:string) => void
+    deleteTag: (index:string, name:string) => void
 };
 
 type State = {
@@ -27,9 +27,9 @@ export class IndivTag extends React.Component<Props, State>  {
         }
     }
 
-    deleteTag(id:string){
+    deleteTag(id:string, name:string){
         // ADD LATER 
-        this.props.deleteTag(id);
+        this.props.deleteTag(id, name);
     }
 
     editTagNameInput(input:string){
@@ -69,7 +69,8 @@ export class IndivTag extends React.Component<Props, State>  {
                         </Modal.Content>
                         <Modal.Actions>
                             <Button negative onClick={() => {this.closeModal()}}>No</Button>
-                            <Button positive onClick={() => {this.deleteTag(this.props.tag.id); this.closeModal()}}>Yes</Button>
+                            <Button positive onClick={() => {this.deleteTag(this.props.tag.id, this.props.tag.name); 
+                                this.closeModal()}}>Yes</Button>
                         </Modal.Actions>
                     </Modal>
 

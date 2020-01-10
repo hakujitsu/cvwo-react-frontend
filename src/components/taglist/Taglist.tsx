@@ -9,7 +9,7 @@ type Props = {
     tags: ITag[]
     addTag: (newname:string) => void
     editTag: (newname:string, index:string) => void
-    deleteTag: (index:string) => void
+    deleteTag: (index:string, name:string) => void
 }
 
 type State = {

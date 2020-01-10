@@ -73,6 +73,7 @@ interface AddTagAction {
 
 interface DeleteTagAction {
     type: typeof DELETE_TAG
+    name:string
     id: string
 }
 

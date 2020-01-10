@@ -5,6 +5,7 @@ import {
     TagActionTypes,
     ITask,
     ITag,
+    ITagOptions,
     ADD_TODO,
     EDIT_TODO,
     DELETE_TODO,
@@ -108,21 +109,29 @@ export function taskReducer(state = initialState, action: TaskActionTypes | TagA
                     name: action.newname,
                     id: uuidv1(),
                 }
-                state.tags.push(newTag)
+                let newTagOption:ITagOptions = {
+                    key: action.newname,
+                    text: action.newname,
+                    value: action.newname
+                }
                 return {
                     tasks: state.tasks,
-                    tags: state.tags,
-                    tagoptions: state.tagoptions
+                    tags: [...state.tags, newTag],
+                    tagoptions: [...state.tagoptions, newTagOption]
                 }
             case DELETE_TAG:
                 return {
                     tasks: state.tasks,
                     tags: state.tags.filter(tag => tag.id !== action.id),
-                    tagoptions: state.tagoptions
+                    tagoptions: state.tagoptions.filter(tagoption => tagoption.key !== action.name)
                 }
             case EDIT_TAG:
                 let editedTag = state.tags.find(tag => tag.id === action.id);
+                let editedTagOption = state.tagoptions.find(tagOption => tagOption.key === editedTag!.name);
                 editedTag!.name = action.newname;
+                editedTagOption!.key = action.newname;
+                editedTagOption!.text = action.newname;
+                editedTagOption!.value = action.newname;
                 return {
                     tasks: state.tasks,
                     tags: state.tags,
@@ -140,6 +149,3 @@ const TaskList = combineReducers({
 })
 
 export default TaskList
-
-
-

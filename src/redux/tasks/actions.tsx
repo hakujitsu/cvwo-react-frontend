@@ -57,9 +57,10 @@ export function addTag(newname:string):TagActionTypes {
            newname: newname,
   }
 }
-export function deleteTag(index:string):TagActionTypes{
+export function deleteTag(index:string, name:string):TagActionTypes{
   return {type: DELETE_TAG, 
-          id: index
+          id: index,
+          name: name
   }
 }
 

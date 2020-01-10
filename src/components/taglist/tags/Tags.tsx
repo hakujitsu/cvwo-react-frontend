@@ -6,7 +6,7 @@ import '../Taglist.css';
 type Props = {
     tags:ITag[]
     editTag: (newname:string, index:string) => void
-    deleteTag: (index:string) => void
+    deleteTag: (index:string, name:string) => void
 }
 
 export const Tags: React.FC<Props> = (props:Props) => {
