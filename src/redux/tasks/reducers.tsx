@@ -10,6 +10,7 @@ import {
     SET_VISIBILITY_FILTER,
     DELETE_TODO
 } from './types'
+const uuidv1 = require('uuid/v1');
 
 
 //INITIAL STATE
@@ -18,17 +19,21 @@ const initialState:TaskTagListState = {
         {
             name: "Do CVWO Task",
             done: true,
-            tag: ["Important", "Work"]
+            tag: ["Important", "Work"],
+            id: 'eaeab160-3349-11ea-8b0c-7f6b133ca2e0'
         },
         {
             name: "Play Celeste",
             done: false,
-            tag: ["Important"]
+            tag: ["Important"],
+            id: 'eaeab161-3349-11ea-8b0c-7f6b133ca2e0'
+            
         },
         {
             name: "Sleep",
             done: false,
-            tag: []
+            tag: [],
+            id: 'eaead870-3349-11ea-8b0c-7f6b133ca2e0'
         }
     ],
     tags: [
@@ -58,8 +63,15 @@ export function taskReducer(state = initialState, action: TaskActionTypes)
     : TaskTagListState {
         switch(action.type){
             case ADD_TODO:
+                let newTask:ITask = {
+                    name: action.newname,
+                    done: false,
+                    tag: action.newtag,
+                    id: uuidv1(),
+                }
+
                 return {
-                    tasks: [...state.tasks, action.newTask],
+                    tasks: [...state.tasks, newTask],
                     tags: state.tags,
                     tagoptions: state.tagoptions
                 }

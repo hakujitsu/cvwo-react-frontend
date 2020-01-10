@@ -19,9 +19,10 @@ export const VisibilityFilters = {
 /*
  * action creators
  */
-export function addTodo(newtask:ITask):TaskActionTypes {
+export function addTodo(newname:string, newtag:string[]):TaskActionTypes {
   return { type: ADD_TODO, 
-           newTask: newtask
+           newname: newname,
+           newtag: newtag,
   }
 }
 export function toggleTodo(index:number):TaskActionTypes {

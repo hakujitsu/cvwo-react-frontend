@@ -4,10 +4,11 @@ import { ITask, ITag, ITagOptions, TaskActionTypes } from '../../redux/tasks/typ
 import { TaskConnector } from '../containers/GetStore'
 import { Button, Modal, Form, Dropdown } from 'semantic-ui-react'
 
+
 type Props = {
     tags: ITag[]
     tagoptions: ITagOptions[]
-    addTask: (arg1:ITask) => void
+    addTask: (newname:string, newtag: string[]) => void
 }
 
 type State = {
@@ -44,13 +45,7 @@ export class Tasklist extends React.Component<Props, State>  {
     }
 
     createTask(newname:string, newtags:string[]){
-        let newTask:ITask = {
-            name: newname,
-            done: false,
-            tag: newtags,
-        }
-        console.log(newTask);
-        this.props.addTask(newTask);
+        this.props.addTask(newname, newtags);
     }
 
     render() {

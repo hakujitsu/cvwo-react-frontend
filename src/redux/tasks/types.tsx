@@ -8,7 +8,7 @@ export interface ITask{
     done: boolean
     tag: string[]
     // date?: Date
-    // id: number
+    id: string
 }
 
 export interface ITag{
@@ -32,7 +32,8 @@ export interface TaskTagListState {
 // Action Interfaces
 interface AddTodoAction {
     type: typeof ADD_TODO
-    newTask: ITask
+    newname: string,
+    newtag: string[]
 }
 
 interface ToggleTodoAction {
