@@ -1,6 +1,5 @@
 import { 
     TaskActionTypes,
-    ITask, 
     ADD_TODO, 
     DELETE_TODO,
     EDIT_TODO,

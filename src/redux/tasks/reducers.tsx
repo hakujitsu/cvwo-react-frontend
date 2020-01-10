@@ -3,8 +3,6 @@ import {
     TaskTagListState,
     TaskActionTypes,
     ITask,
-    ITag,
-    ITagOptions,
     ADD_TODO,
     EDIT_TODO,
     DELETE_TODO,

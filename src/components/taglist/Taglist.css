@@ -1,0 +1,61 @@
+/* Taglist */
+
+.main{
+    box-sizing: border-box;
+    padding-top: 40px;
+    padding-left: 40px;
+    padding-right: 40px;
+    background-color: #ffffff;
+    /* overflow: scroll; */
+}
+
+.tagheader{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.taglist{
+    box-sizing: border-box;
+    padding-top: 20px;
+}
+
+.tagname{
+    font-size: 14px;
+}
+
+  .addtags{
+    font-size: 14px;
+    color: #696969;
+  }
+
+  /* Others */
+  .icon {
+    height: 20px;
+    width: auto;
+    vertical-align: middle;
+  }
+
+
+  .edit{
+    float: right;
+    height: 17px;
+    width: auto;
+    vertical-align: middle;
+    fill: #9F9F9F;
+    padding-right: 10px;
+  }
+
+  .delete{
+    float:right;
+    height: 20px;
+    width: auto;
+    vertical-align: middle;
+    fill: #9F9F9F;
+  }
+
+  hr {
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  }

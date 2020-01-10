@@ -2,7 +2,8 @@ import React from 'react';
 import './App.css';
 import Header from './components/header/Header';
 import Sidebar from './components/sidebar/Sidebar';
-import { TasklistConnector } from './components/containers/GetStore';
+// import { TasklistConnector } from './components/containers/GetStore';
+import { TaglistConnector } from './components/containers/GetStore'
 
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
 
         <Sidebar/>
         
-        <TasklistConnector/>
+        <TaglistConnector/>
         
       </div>
  

@@ -1,8 +1,8 @@
 import React from 'react'
-import edit from '../../svgs/edit.svg'
-import deletes from '../../svgs/delete.svg'
+import edit from '../../../svgs/edit.svg'
+import deletes from '../../../svgs/delete.svg'
 import './Tasks.css'
-import { ITask, ITagOptions } from '../../redux/tasks/types'
+import { ITask, ITagOptions } from '../../../redux/tasks/types'
 import IndivTag from './IndivTag'
 import { Button, Modal, Form, Dropdown, Checkbox } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css';

@@ -1,6 +1,6 @@
 import React from 'react';
-import {ITag} from '../../redux/tasks/types'
-import '../sidebar/Sidebar.css';
+import {ITag} from '../../../redux/tasks/types'
+import '../Sidebar.css';
 import IndivTag from './SidebarIndivTag'
 
 type Props = {

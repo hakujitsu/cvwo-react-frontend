@@ -1,6 +1,6 @@
 import React from 'react';
 import './Tasks.css';
-import { ITask, ITagOptions } from '../../redux/tasks/types'
+import { ITask, ITagOptions } from '../../../redux/tasks/types'
 import IndivTask from './IndivTask';
 
 type Props = {
