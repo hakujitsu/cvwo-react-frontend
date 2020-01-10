@@ -1,6 +1,6 @@
 import React from 'react';
 import './Tasklist.css';
-import { ITask, ITag, ITagOptions } from '../../redux/tasks/types'
+import { ITag, ITagOptions } from '../../redux/tasks/types'
 import { TaskConnector } from '../containers/GetStore'
 import { Button, Modal, Form, Dropdown } from 'semantic-ui-react'
 
@@ -8,8 +8,6 @@ type Props = {
     tags: ITag[]
     tagoptions: ITagOptions[]
     addTask: (newname:string, newtag: string[]) => void
-    // deleteTask: (id:string) => void
-
 }
 
 type State = {
@@ -37,7 +35,6 @@ export class Tasklist extends React.Component<Props, State>  {
     }
 
     newTaskTagInput(tags:any){
-        console.log(tags);
         let newtags:string[] = [];
         for(let i = 0; i < tags.value.length; i++){
             newtags.push(tags.value[i]);
@@ -58,7 +55,7 @@ export class Tasklist extends React.Component<Props, State>  {
 
     return (
         <div className = "main">
-        <div className = "taskheader">Today</div>
+        <div className = "taskheader">All Tasks</div>
 
         <div className = "tasklist">
             <TaskConnector/>
@@ -85,7 +82,7 @@ export class Tasklist extends React.Component<Props, State>  {
                 </Modal.Actions>
             </Modal>
         </div>
-    </div>
+        </div>
     )
     }
 }

@@ -2,9 +2,10 @@ import {
     TaskActionTypes,
     ITask, 
     ADD_TODO, 
+    DELETE_TODO,
+    EDIT_TODO,
     TOGGLE_TODO, 
     SET_VISIBILITY_FILTER, 
-    DELETE_TODO 
 } from './types'
 
 
@@ -28,6 +29,14 @@ export function addTodo(newname:string, newtag:string[]):TaskActionTypes {
 export function deleteTodo(index:string):TaskActionTypes{
   return {type: DELETE_TODO, 
           id: index
+  }
+}
+
+export function editTodo(newname:string, newtag:string[], index:string):TaskActionTypes{
+  return { type: EDIT_TODO, 
+           newname: newname,
+           newtag: newtag,
+           id: index
   }
 }
 

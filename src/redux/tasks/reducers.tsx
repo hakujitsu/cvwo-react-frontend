@@ -6,9 +6,10 @@ import {
     ITag,
     ITagOptions,
     ADD_TODO,
+    EDIT_TODO,
+    DELETE_TODO,
     TOGGLE_TODO,
     SET_VISIBILITY_FILTER,
-    DELETE_TODO
 } from './types'
 const uuidv1 = require('uuid/v1');
 
@@ -76,7 +77,16 @@ export function taskReducer(state = initialState, action: TaskActionTypes)
                 }
             case DELETE_TODO:
                 return {
-                    tasks: state.tasks.filter(task => task.id != action.id),
+                    tasks: state.tasks.filter(task => task.id !== action.id),
+                    tags: state.tags,
+                    tagoptions: state.tagoptions
+                }
+            case EDIT_TODO:
+                let editedTask = state.tasks.find(task => task.id === action.id);
+                editedTask!.name = action.newname;
+                editedTask!.tag = action.newtag;
+                return {
+                    tasks: state.tasks,
                     tags: state.tags,
                     tagoptions: state.tagoptions
                 }

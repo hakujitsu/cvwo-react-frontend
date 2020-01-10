@@ -4,19 +4,21 @@ import { ITask, ITagOptions } from '../../redux/tasks/types'
 import IndivTask from './IndivTask';
 
 type Props = {
-    tasks: ITask[];
-    tagoptions: ITagOptions[];
-    deleteTask: (id:string) => void
+    tasks: ITask[],
+    tagoptions: ITagOptions[],
+    deleteTask: (id:string) => void,
+    editTask: (newname:string, newtag:string[], index:string) => void
 }
 
 export const Tasks: React.FC<Props> = (props:Props) => {
-    const { tasks, tagoptions, deleteTask } = props;
+    const { tasks, tagoptions, deleteTask, editTask } = props;
     return (
         <div>     
             {
                 tasks.map((task: ITask, index: number) =>
-                    <IndivTask key = {index} task={task} options={tagoptions} deleteTask={deleteTask}/>
-            )}
+                    <IndivTask key = {index} task={task} options={tagoptions} deleteTask={deleteTask} editTask={editTask}/>
+                )
+            }
         </div>
     )
 }

@@ -1,22 +1,24 @@
-import React from 'react';
-import edit from '../../svgs/edit.svg';
-import './Tasks.css';
+import React from 'react'
+import edit from '../../svgs/edit.svg'
+import deletes from '../../svgs/delete.svg'
+import './Tasks.css'
 import { ITask, ITagOptions, ITag } from '../../redux/tasks/types'
 import IndivTag from './IndivTag'
-
 import { Button, Modal, Form, Dropdown } from 'semantic-ui-react'
-import deletes from '../../svgs/delete.svg'
 import 'semantic-ui-css/semantic.min.css';
 
 type Props =  {
     task: ITask,
     options: ITagOptions[],
-    deleteTask: (id:string) => void
+    deleteTask: (id:string) => void,
+    editTask: (newname:string, newtag:string[], index:string) => void
 };
 
 type State = {
     showDeleteModal: boolean,
-    showEditModal: boolean
+    showEditModal: boolean,
+    editTaskName: string,
+    editTaskTags: string[]
 }
 
 export class IndivTask extends React.Component<Props, State>  {
@@ -24,13 +26,36 @@ export class IndivTask extends React.Component<Props, State>  {
         super(props)
         this.state = {
             showDeleteModal: false,
-            showEditModal: false
+            showEditModal: false,
+            editTaskName: "",
+            editTaskTags: []    
         }
     }
 
     deleteTask(id:string){
         this.props.deleteTask(id);
         
+    }
+
+    initialiseEditTaskNameModal(name:string){
+        this.setState({editTaskName: name});
+        return name;
+    }
+
+    editTaskNameInput(input:string){
+        this.setState({editTaskName: input});
+    }
+
+    editTaskTagInput(tags:any){
+        let newtags:string[] = [];
+        for(let i = 0; i < tags.value.length; i++){
+            newtags.push(tags.value[i]);
+        }
+        this.setState({editTaskTags: newtags});
+    }
+
+    editTask(id:string){
+        this.props.editTask(this.state.editTaskName, this.state.editTaskTags, id);
     }
 
     closeModal = () => {
@@ -43,7 +68,9 @@ export class IndivTask extends React.Component<Props, State>  {
     render(){
         const {
             showDeleteModal,
-            showEditModal
+            showEditModal,
+            editTaskName,
+            editTaskTags
         } = this.state
 
         return (
@@ -69,26 +96,31 @@ export class IndivTask extends React.Component<Props, State>  {
     
                     {/* EDIT BUTTON */}
                     <Modal onClose={this.closeModal} open={showEditModal} size={"small"} 
-                    trigger={<img onClick={() => this.setState({ showEditModal: true })}className = "edit" src = {edit} alt=""/>}>
-                    <Modal.Header>Edit Task</Modal.Header>
-                    <Modal.Content>
-                        <Modal.Description>
-                            <Form>
-                                <Form.Field >
-                                    <div><strong>Task Name</strong></div>
-                                        <input defaultValue={this.props.task.name}/>
-                                </Form.Field>
-                                <div><strong>Tags</strong></div>
-                                <Dropdown fluid multiple selection options={this.props.options} />
-                                {/* ADD DEFAULT VALUE */}
-                            </Form>
-                        </Modal.Description>
-                    </Modal.Content>
-                    <Modal.Actions>
-                        <Button positive onClick={() => {this.closeModal()}}>Confirm</Button>
-                        <Button negative onClick={() => {this.closeModal()}}>Cancel</Button>
-                    </Modal.Actions>
-                </Modal>
+                    trigger={<img onClick={() => {this.setState({ showEditModal: true }); 
+                                            this.setState({editTaskName: this.props.task.name});
+                                            this.setState({editTaskTags: this.props.task.tag})}}
+                    className = "edit" src = {edit} alt=""/>}>
+                        <Modal.Header>Edit Task</Modal.Header>
+                        <Modal.Content>
+                            <Modal.Description>
+                                <Form>
+                                    <Form.Field >
+                                        <div><strong>Task Name</strong></div>
+                                            <input defaultValue={this.props.task.name}
+                                                onChange={(e) => this.editTaskNameInput(e.target.value)}/>
+                                    </Form.Field>
+                                    <div><strong>Tags</strong></div>
+                                    <Dropdown defaultValue={this.props.task.tag} 
+                                        fluid multiple selection options={this.props.options} 
+                                        onChange={(e, { value }) => this.editTaskTagInput({value})}/> 
+                                </Form>
+                            </Modal.Description>
+                        </Modal.Content>
+                        <Modal.Actions>
+                            <Button positive onClick={() => {this.editTask(this.props.task.id); this.closeModal()}}>Confirm</Button>
+                            <Button negative onClick={() => {this.closeModal()}}>Cancel</Button>
+                        </Modal.Actions>
+                    </Modal>
     
                 </div>
                 <div>
@@ -104,7 +136,6 @@ export class IndivTask extends React.Component<Props, State>  {
             </div>
         )
     }
-
 }
 
 
