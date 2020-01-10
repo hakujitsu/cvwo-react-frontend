@@ -90,6 +90,14 @@ export function taskReducer(state = initialState, action: TaskActionTypes)
                     tags: state.tags,
                     tagoptions: state.tagoptions
                 }
+            case TOGGLE_TODO:
+                let toggledTask = state.tasks.find(task => task.id === action.id);
+                toggledTask!.done = !toggledTask!.done;
+                return {
+                    tasks: state.tasks,
+                    tags: state.tags,
+                    tagoptions: state.tagoptions
+                }
             default:
                 return state
         }

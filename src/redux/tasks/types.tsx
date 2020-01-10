@@ -9,7 +9,6 @@ export interface ITask{
     name: string
     done: boolean
     tag: string[]
-    // date?: Date
     id: string
 }
 

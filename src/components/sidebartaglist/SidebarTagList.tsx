@@ -18,7 +18,8 @@ export const SidebarTagList: React.FC<Props> = (props:Props) => {
             {
                 tags.map((tag: ITag, index: number) =>
                     <IndivTag key = {index} {...tag}/>
-            )}
+                )
+            }
 
         </div>
     )

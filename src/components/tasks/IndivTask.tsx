@@ -2,16 +2,17 @@ import React from 'react'
 import edit from '../../svgs/edit.svg'
 import deletes from '../../svgs/delete.svg'
 import './Tasks.css'
-import { ITask, ITagOptions, ITag } from '../../redux/tasks/types'
+import { ITask, ITagOptions } from '../../redux/tasks/types'
 import IndivTag from './IndivTag'
-import { Button, Modal, Form, Dropdown } from 'semantic-ui-react'
+import { Button, Modal, Form, Dropdown, Checkbox } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css';
 
 type Props =  {
     task: ITask,
     options: ITagOptions[],
     deleteTask: (id:string) => void,
-    editTask: (newname:string, newtag:string[], index:string) => void
+    editTask: (newname:string, newtag:string[], index:string) => void,
+    toggleTask: (index:string) => void
 };
 
 type State = {
@@ -32,9 +33,12 @@ export class IndivTask extends React.Component<Props, State>  {
         }
     }
 
+    toggleTask(id:string){
+        this.props.toggleTask(id);
+    }
+
     deleteTask(id:string){
         this.props.deleteTask(id);
-        
     }
 
     initialiseEditTaskNameModal(name:string){
@@ -69,15 +73,14 @@ export class IndivTask extends React.Component<Props, State>  {
         const {
             showDeleteModal,
             showEditModal,
-            editTaskName,
-            editTaskTags
         } = this.state
 
         return (
             <div className = "task">
                 <div>
-                    <input type = "checkbox"/>
-                    <span className = "taskname">{this.props.task.name}</span>
+                    {/* CHECKBOX AND TASK NAME */}
+                    <Checkbox label={this.props.task.name} defaultChecked={this.props.task.done}
+                    onChange={() => this.toggleTask(this.props.task.id)}/>
     
                     {/* DELETE BUTTON */}
                     <div className = "delete">
@@ -123,6 +126,8 @@ export class IndivTask extends React.Component<Props, State>  {
                     </Modal>
     
                 </div>
+
+                {/* TASK TAGS */}
                 <div>
                 {
                     this.props.task.tag.map((tag: string, index: number) => {
