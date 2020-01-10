@@ -1,13 +1,13 @@
 import React from 'react';
 import './Taglist.css';
-import { ITag } from '../../redux/tasks/types'
+import { ITag, IDropdownOptions } from '../../redux/tasks/types'
 import { Tags } from './tags/Tags'
 import { Button, Modal, Form, Dropdown } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css';
 
 type Props = {
     tags: ITag[]
-    addTag: (newname:string) => void
+    addTag: (newname:string, newcolour:string) => void
     editTag: (newname:string, index:string) => void
     deleteTag: (index:string, name:string) => void
 }
@@ -15,6 +15,8 @@ type Props = {
 type State = {
     showModal: boolean
     newTagName: string
+    newTagColor: string
+    tagcolors: IDropdownOptions[]
 }
 
 export class Taglist extends React.Component<Props, State> {
@@ -23,8 +25,44 @@ export class Taglist extends React.Component<Props, State> {
         this.state = {
             showModal: false,
             newTagName: "",
+            newTagColor: "",
+            tagcolors:[
+                {
+                    key: "Red",
+                    text: "Red",
+                    value: "#DC9393"
+                },
+                {
+                    key: "Pink",
+                    text: "Pink",
+                    value: "#FFCECE"
+                },
+                {
+                    key: "Purple",
+                    text: "Purple",
+                    value: "#E0B9F5"
+                },
+                {
+                    key: "Yellow",
+                    text: "Yellow",
+                    value: "#ECED9D"
+                },
+                {
+                    key: "Green",
+                    text: "Green",
+                    value: "#A8D8A5"
+                },
+                {
+                    key: "Blue",
+                    text: "Blue",
+                    value: "#93D1DC"
+                },
+                
+            ]
         }
     }
+
+    
 
     closeModal = () => {
         this.setState({ showModal: false })
@@ -34,8 +72,13 @@ export class Taglist extends React.Component<Props, State> {
         this.setState({newTagName: input});
     }
 
+    newTagColorInput(color:any){
+        this.setState({newTagColor: color.value});
+    }
+
+
     createTag(){
-        this.props.addTag(this.state.newTagName);
+        this.props.addTag(this.state.newTagName, (this.state.newTagColor));
     }
 
     render() {
@@ -60,6 +103,9 @@ export class Taglist extends React.Component<Props, State> {
                                 <div><strong>Tag Name</strong></div>
                                     <input onChange={(e) => this.newTagNameInput(e.target.value)} />
                             </Form.Field>
+                            <label><strong>Colour</strong></label>
+                            <Dropdown onChange={(e, { value }) => this.newTagColorInput({value})}
+                            fluid selection options={this.state.tagcolors} />
                         </Form>
                     </Modal.Description>
                 </Modal.Content>

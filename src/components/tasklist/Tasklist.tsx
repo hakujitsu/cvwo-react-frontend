@@ -1,12 +1,12 @@
 import React from 'react';
 import './Tasklist.css';
-import { ITag, ITagOptions } from '../../redux/tasks/types'
+import { ITag, IDropdownOptions } from '../../redux/tasks/types'
 import { TaskConnector } from '../containers/GetStore'
 import { Button, Modal, Form, Dropdown } from 'semantic-ui-react'
 
 type Props = {
     tags: ITag[]
-    tagoptions: ITagOptions[]
+    tagoptions: IDropdownOptions[]
     addTask: (newname:string, newtag: string[]) => void
 }
 

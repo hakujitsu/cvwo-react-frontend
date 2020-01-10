@@ -5,7 +5,7 @@ import {
     TagActionTypes,
     ITask,
     ITag,
-    ITagOptions,
+    IDropdownOptions,
     ADD_TODO,
     EDIT_TODO,
     DELETE_TODO,
@@ -44,11 +44,13 @@ const initialState:TaskTagListState = {
     tags: [
         {
             name: "Important",
-            id: "0e7762f0-338a-11ea-872e-1d7406f7a6ab"
+            id: "0e7762f0-338a-11ea-872e-1d7406f7a6ab",
+            colour: "#DC9393"
         },
         {
             name: "Work",
-            id: "0e778a01-338a-11ea-872e-1d7406f7a6ab"
+            id: "0e778a01-338a-11ea-872e-1d7406f7a6ab",
+            colour: "#A8D8A5"
         }
     ],
     tagoptions:[
@@ -107,9 +109,11 @@ export function taskReducer(state = initialState, action: TaskActionTypes | TagA
             case ADD_TAG:
                 let newTag:ITag = {
                     name: action.newname,
+                    //ADD COLOUR PLS
+                    colour: "",
                     id: uuidv1(),
                 }
-                let newTagOption:ITagOptions = {
+                let newTagOption:IDropdownOptions = {
                     key: action.newname,
                     text: action.newname,
                     value: action.newname

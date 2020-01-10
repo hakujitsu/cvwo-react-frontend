@@ -1,11 +1,11 @@
 import React from 'react';
 import './Tasks.css';
-import { ITask, ITagOptions } from '../../../redux/tasks/types'
+import { ITask, IDropdownOptions } from '../../../redux/tasks/types'
 import IndivTask from './IndivTask';
 
 type Props = {
     tasks: ITask[],
-    tagoptions: ITagOptions[],
+    tagoptions: IDropdownOptions[],
     deleteTask: (id:string) => void,
     editTask: (newname:string, newtag:string[], index:string) => void,
     toggleTask: (index:string) => void

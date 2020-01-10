@@ -19,10 +19,11 @@ export interface ITask{
 
 export interface ITag{
     name: string
+    colour: string,
     id: string
 }
 
-export interface ITagOptions{
+export interface IDropdownOptions{
     key: string,
     text: string,
     value: string
@@ -31,7 +32,7 @@ export interface ITagOptions{
 export interface TaskTagListState {
     tasks: ITask[]
     tags: ITag[]
-    tagoptions: ITagOptions[]
+    tagoptions: IDropdownOptions[]
 }
 // Perhaps create another interface for filtering tasks????
 
@@ -69,6 +70,7 @@ interface SetVisibilityFilterAction {
 interface AddTagAction {
     type: typeof ADD_TAG
     newname: string,
+    newcolour: string,
 }
 
 interface DeleteTagAction {

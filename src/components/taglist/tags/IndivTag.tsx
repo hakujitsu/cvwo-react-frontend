@@ -4,6 +4,7 @@ import edit from '../../../svgs/edit.svg';
 import { ITag } from '../../../redux/tasks/types'
 import { Button, Modal, Form, Dropdown } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css';
+import '../Taglist.css';
 
 type Props =  {
     tag:ITag
@@ -58,6 +59,7 @@ export class IndivTag extends React.Component<Props, State>  {
             <div>
                 <div className = "indivtag">
                     {/* TAG NAME */}
+                    <div className="circle" style={{backgroundColor: this.props.tag.colour}}></div>
                     <span className = "tagname">{this.props.tag.name}</span>
 
                     {/* DELETE BUTTON */}

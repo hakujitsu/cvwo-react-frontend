@@ -2,14 +2,14 @@ import React from 'react'
 import edit from '../../../svgs/edit.svg'
 import deletes from '../../../svgs/delete.svg'
 import './Tasks.css'
-import { ITask, ITagOptions } from '../../../redux/tasks/types'
+import { ITask, IDropdownOptions } from '../../../redux/tasks/types'
 import IndivTag from './IndivTag'
 import { Button, Modal, Form, Dropdown, Checkbox } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css';
 
 type Props =  {
     task: ITask,
-    options: ITagOptions[],
+    options: IDropdownOptions[],
     deleteTask: (id:string) => void,
     editTask: (newname:string, newtag:string[], index:string) => void,
     toggleTask: (index:string) => void

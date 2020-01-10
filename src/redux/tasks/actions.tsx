@@ -52,9 +52,10 @@ export function setVisibilityFilter(filter:string):TaskActionTypes {
   }
 }
 
-export function addTag(newname:string):TagActionTypes {
+export function addTag(newname:string, newcolour:string):TagActionTypes {
   return { type: ADD_TAG, 
            newname: newname,
+           newcolour: newcolour
   }
 }
 export function deleteTag(index:string, name:string):TagActionTypes{
