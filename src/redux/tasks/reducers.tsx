@@ -65,7 +65,7 @@ const initialState:TaskTagListState = {
 }
 
 //HANDLES ACTIONS MADE TO STATE, RETURNS STATE
-export function taskReducer(state = initialState, action: TaskActionTypes)
+export function taskReducer(state = initialState, action: TaskActionTypes | TagActionTypes)
     : TaskTagListState {
         switch(action.type){
             case ADD_TODO:
@@ -103,14 +103,6 @@ export function taskReducer(state = initialState, action: TaskActionTypes)
                     tags: state.tags,
                     tagoptions: state.tagoptions
                 }
-            default:
-                return state
-        }
-}
-
-export function tagReducer(state = initialState, action: TagActionTypes)
-    : TaskTagListState {
-        switch(action.type){
             case ADD_TAG:
                 let newTag:ITag = {
                     name: action.newname,
@@ -123,16 +115,21 @@ export function tagReducer(state = initialState, action: TagActionTypes)
                     tagoptions: state.tagoptions
                 }
             case DELETE_TAG:
-                console.log("reducer");
-                let newTags = state.tags.filter(tag => tag.id !== action.id);
-                console.log(newTags);
                 return {
                     tasks: state.tasks,
-                    tags: newTags,
+                    tags: state.tags.filter(tag => tag.id !== action.id),
+                    tagoptions: state.tagoptions
+                }
+            case EDIT_TAG:
+                let editedTag = state.tags.find(tag => tag.id === action.id);
+                editedTag!.name = action.newname;
+                return {
+                    tasks: state.tasks,
+                    tags: state.tags,
                     tagoptions: state.tagoptions
                 }
             default:
-                return state
+                return state;
         }
 }
 
@@ -140,7 +137,6 @@ export function tagReducer(state = initialState, action: TagActionTypes)
 
 const TaskList = combineReducers({
     taskReducer,
-    tagReducer
 })
 
 export default TaskList
