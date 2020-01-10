@@ -25,7 +25,13 @@ export function addTodo(newname:string, newtag:string[]):TaskActionTypes {
            newtag: newtag,
   }
 }
-export function toggleTodo(index:number):TaskActionTypes {
+export function deleteTodo(index:string):TaskActionTypes{
+  return {type: DELETE_TODO, 
+          id: index
+  }
+}
+
+export function toggleTodo(index:string):TaskActionTypes {
   return { type: TOGGLE_TODO, 
            id : index }
 }
@@ -34,11 +40,7 @@ export function setVisibilityFilter(filter:string):TaskActionTypes {
            filter: filter 
   }
 }
-export function deleteTodo(index:number):TaskActionTypes{
-  return {type: DELETE_TODO, 
-          id: index
-  }
-}
+
 
 /* 
 Things to add

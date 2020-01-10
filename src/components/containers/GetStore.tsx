@@ -3,7 +3,7 @@ import { TaskActionTypes, TaskTagListState, ITask } from '../../redux/tasks/type
 import { SidebarTagList } from '../taglist/SidebarTagList'
 import { Tasks } from '../tasks/Tasks'
 import { Tasklist } from '../tasklist/Tasklist'
-import { addTodo } from '../../redux/tasks/actions';
+import { addTodo, deleteTodo } from '../../redux/tasks/actions';
 
 
 // Describes how to transform the current Redux store state into 
@@ -17,6 +17,7 @@ const mapStateToProps = (state: {taskReducer: TaskTagListState}) => void console
 
 const mapDispatchToProps = {
     addTask: addTodo,
+    deleteTask: deleteTodo
 }
 
 export const TaskConnector = connect(mapStateToProps, mapDispatchToProps)(Tasks)

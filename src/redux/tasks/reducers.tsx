@@ -69,9 +69,14 @@ export function taskReducer(state = initialState, action: TaskActionTypes)
                     tag: action.newtag,
                     id: uuidv1(),
                 }
-
                 return {
                     tasks: [...state.tasks, newTask],
+                    tags: state.tags,
+                    tagoptions: state.tagoptions
+                }
+            case DELETE_TODO:
+                return {
+                    tasks: state.tasks.filter(task => task.id != action.id),
                     tags: state.tags,
                     tagoptions: state.tagoptions
                 }

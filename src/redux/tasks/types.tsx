@@ -38,7 +38,7 @@ interface AddTodoAction {
 
 interface ToggleTodoAction {
     type: typeof TOGGLE_TODO
-    id: number
+    id: string
 }
 
 interface SetVisibilityFilterAction {
@@ -48,7 +48,7 @@ interface SetVisibilityFilterAction {
 
 interface DeleteTodoAction {
     type: typeof DELETE_TODO
-    id: number
+    id: string
 }
 
 export type TaskActionTypes = AddTodoAction | ToggleTodoAction | SetVisibilityFilterAction | DeleteTodoAction

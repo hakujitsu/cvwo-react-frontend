@@ -10,7 +10,8 @@ import 'semantic-ui-css/semantic.min.css';
 
 type Props =  {
     task: ITask,
-    options: ITagOptions[];
+    options: ITagOptions[],
+    deleteTask: (id:string) => void
 };
 
 type State = {
@@ -25,6 +26,11 @@ export class IndivTask extends React.Component<Props, State>  {
             showDeleteModal: false,
             showEditModal: false
         }
+    }
+
+    deleteTask(id:string){
+        this.props.deleteTask(id);
+        
     }
 
     closeModal = () => {
@@ -56,7 +62,7 @@ export class IndivTask extends React.Component<Props, State>  {
                             </Modal.Content>
                             <Modal.Actions>
                                 <Button negative onClick={() => {this.closeModal()}}>No</Button>
-                                <Button positive onClick={() => {this.closeModal()}}>Yes</Button>
+                                <Button positive onClick={() => {this.deleteTask(this.props.task.id); this.closeModal()}}>Yes</Button>
                             </Modal.Actions>
                         </Modal>
                     </div>
