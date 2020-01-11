@@ -4,6 +4,10 @@ import today from '../../svgs/today.svg';
 import thisweek from '../../svgs/thisweek.svg';
 import './Sidebar.css';
 import  { SidebarTagConnector } from '../containers/GetStore';
+import {
+    BrowserRouter as Router,
+    Link
+  } from "react-router-dom";
 
 class Sidebar extends React.Component {
     render() {
@@ -11,8 +15,10 @@ class Sidebar extends React.Component {
         <div className = "sidebar">
             <div className = "default_sidebar">
                 <div className = "default_options">
+                    <Link to="/">
                     <img className = "icon" src ={all} alt=""></img>
                     <span className = "sb">All</span>
+                    </Link>
                 </div>
                 
                 {/* <div className = "default_options">

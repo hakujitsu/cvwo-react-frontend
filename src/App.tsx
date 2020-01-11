@@ -5,6 +5,12 @@ import Sidebar from './components/sidebar/Sidebar';
 import { TasklistConnector } from './components/containers/GetStore';
 import { TaglistConnector } from './components/containers/GetStore'
 
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 function App() {
   return (
@@ -15,8 +21,15 @@ function App() {
 
         <Sidebar/>
         
-        <TaglistConnector/>
-        
+        <Switch>
+          <Route exact path="/">
+            <TasklistConnector />
+          </Route>
+          <Route path="/tags">
+            <TaglistConnector />
+          </Route>
+        </Switch>
+ 
       </div>
  
     </div>

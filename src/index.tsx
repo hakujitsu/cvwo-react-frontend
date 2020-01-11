@@ -8,8 +8,7 @@ import { Provider } from 'react-redux'
 import { createStore} from 'redux'
 import TaskList from './redux/tasks/reducers'
 
-// import { BrowserRouter as Router, Route } from 'react-router-dom'
-
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 // add redux devtools extension key for typescript
 declare global {
@@ -21,7 +20,9 @@ const store = createStore(TaskList,
 
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+        <Router>
+            <Route path="/" component={App}/>
+        </Router>
     </Provider>
 
 , document.getElementById('root'));

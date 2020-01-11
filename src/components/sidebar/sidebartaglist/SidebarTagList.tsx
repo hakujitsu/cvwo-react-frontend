@@ -2,6 +2,10 @@ import React from 'react';
 import {ITag} from '../../../redux/tasks/types'
 import '../Sidebar.css';
 import IndivTag from './SidebarIndivTag'
+import {
+    BrowserRouter as Router,
+    Link
+} from "react-router-dom";
 
 type Props = {
     tags: ITag[];
@@ -12,7 +16,7 @@ export const SidebarTagList: React.FC<Props> = (props:Props) => {
     return (
         <div className = "sidebar_tags">
             <div className = "sb_tag_title">
-                <strong>Tags</strong>
+                <strong><Link to="/tags">Tags</Link></strong>
             </div>
             <hr/>
             {
