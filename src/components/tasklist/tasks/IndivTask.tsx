@@ -65,7 +65,9 @@ export class IndivTask extends React.Component<Props, State>  {
     closeModal = () => {
         this.setState({ 
             showDeleteModal: false,
-            showEditModal: false 
+            showEditModal: false,
+            editTaskName: "",
+            editTaskTags: []
         })
     }
 
@@ -120,7 +122,8 @@ export class IndivTask extends React.Component<Props, State>  {
                             </Modal.Description>
                         </Modal.Content>
                         <Modal.Actions>
-                            <Button positive onClick={() => {this.editTask(this.props.task.id); this.closeModal()}}>Confirm</Button>
+                            <Button positive onClick={() => {this.editTask(this.props.task.id); this.closeModal()}}
+                            disabled={!this.state.editTaskName}>Confirm</Button>
                             <Button negative onClick={() => {this.closeModal()}}>Cancel</Button>
                         </Modal.Actions>
                     </Modal>

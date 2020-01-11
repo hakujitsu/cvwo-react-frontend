@@ -61,10 +61,10 @@ export class Taglist extends React.Component<Props, State> {
         }
     }
 
-    
-
     closeModal = () => {
         this.setState({ showModal: false })
+        this.setState({newTagName: ""});
+        this.setState({newTagColor: ""});
     }
 
     newTagNameInput(input:string){
@@ -74,7 +74,6 @@ export class Taglist extends React.Component<Props, State> {
     newTagColorInput(color:any){
         this.setState({newTagColor: color.value});
     }
-
 
     createTag(){
         this.props.addTag(this.state.newTagName, (this.state.newTagColor));
@@ -109,7 +108,8 @@ export class Taglist extends React.Component<Props, State> {
                     </Modal.Description>
                 </Modal.Content>
                 <Modal.Actions>
-                    <Button positive onClick={() => {this.closeModal(); this.createTag()}}>Confirm</Button>
+                    <Button positive onClick={() => {this.closeModal(); this.createTag()}}
+                    disabled={!this.state.newTagName || !this.state.newTagColor}>Confirm</Button>
                     <Button negative onClick={() => this.closeModal()}>Cancel</Button>
                 </Modal.Actions>
             </Modal>

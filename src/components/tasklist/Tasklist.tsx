@@ -28,6 +28,8 @@ export class Tasklist extends React.Component<Props, State>  {
 
     closeModal = () => {
         this.setState({ showModal: false })
+        this.setState({newTaskName: ""});
+        this.setState({newTaskTags: []});
     }
     
     newTaskNameInput(input:string){
@@ -77,7 +79,9 @@ export class Tasklist extends React.Component<Props, State>  {
                     </Modal.Description>
                 </Modal.Content>
                 <Modal.Actions>
-                    <Button positive onClick={() => {this.closeModal(); this.createTask(newTaskName, newTaskTags)}}>Confirm</Button>
+                    <Button positive disabled={!this.state.newTaskName}
+                    onClick={() => {this.closeModal(); this.createTask(newTaskName, newTaskTags)}}
+                    >Confirm</Button>
                     <Button negative onClick={() => this.closeModal()}>Cancel</Button>
                 </Modal.Actions>
             </Modal>
