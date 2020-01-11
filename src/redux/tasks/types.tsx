@@ -81,7 +81,8 @@ interface DeleteTagAction {
 
 interface EditTagAction{
     type: typeof EDIT_TAG
-    newname: string,
+    editname: string,
+    editcolor: string,
     id: string
 }
 

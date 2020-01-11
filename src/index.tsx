@@ -8,6 +8,9 @@ import { Provider } from 'react-redux'
 import { createStore} from 'redux'
 import TaskList from './redux/tasks/reducers'
 
+// import { BrowserRouter as Router, Route } from 'react-router-dom'
+
+
 // add redux devtools extension key for typescript
 declare global {
     interface Window { __REDUX_DEVTOOLS_EXTENSION__: Function | undefined }

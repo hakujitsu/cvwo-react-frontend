@@ -109,8 +109,7 @@ export function taskReducer(state = initialState, action: TaskActionTypes | TagA
             case ADD_TAG:
                 let newTag:ITag = {
                     name: action.newname,
-                    //ADD COLOUR PLS
-                    colour: "",
+                    colour: action.newcolour,
                     id: uuidv1(),
                 }
                 let newTagOption:IDropdownOptions = {
@@ -132,13 +131,14 @@ export function taskReducer(state = initialState, action: TaskActionTypes | TagA
             case EDIT_TAG:
                 let editedTag = state.tags.find(tag => tag.id === action.id);
                 let editedTagOption = state.tagoptions.find(tagOption => tagOption.key === editedTag!.name);
-                editedTag!.name = action.newname;
-                editedTagOption!.key = action.newname;
-                editedTagOption!.text = action.newname;
-                editedTagOption!.value = action.newname;
+                editedTagOption!.key = action.editname;
+                editedTagOption!.text = action.editname;
+                editedTagOption!.value = action.editname;
                 return {
                     tasks: state.tasks,
-                    tags: state.tags,
+                    tags: state.tags.map(tag => tag.id === action.id
+                                            ? { ...tag, name: action.editname, colour: action.editcolor}
+                                            : tag),
                     tagoptions: state.tagoptions
                 }
             default:

@@ -1,14 +1,14 @@
 import React from 'react';
 import deletes from '../../../svgs/delete.svg';
 import edit from '../../../svgs/edit.svg';
-import { ITag } from '../../../redux/tasks/types'
+import { ITag, IDropdownOptions } from '../../../redux/tasks/types'
 import { Button, Modal, Form, Dropdown } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css';
 import '../Taglist.css';
 
 type Props =  {
     tag:ITag
-    editTag: (newname:string, index:string) => void
+    editTag: (editname:string, editcolor:string, index:string) => void
     deleteTag: (index:string, name:string) => void
 };
 
@@ -16,6 +16,8 @@ type State = {
     showDeleteModal: boolean,
     showEditModal: boolean,
     editTagName: string,
+    editTagColor: string,
+    tagcolors: IDropdownOptions[]
 }
 
 export class IndivTag extends React.Component<Props, State>  {
@@ -25,6 +27,39 @@ export class IndivTag extends React.Component<Props, State>  {
             showDeleteModal: false,
             showEditModal: false,
             editTagName: "",
+            editTagColor: "",
+            tagcolors:[
+                {
+                    key: "Red",
+                    text: "Red",
+                    value: "#DC9393"
+                },
+                {
+                    key: "Pink",
+                    text: "Pink",
+                    value: "#FFCECE"
+                },
+                {
+                    key: "Purple",
+                    text: "Purple",
+                    value: "#E0B9F5"
+                },
+                {
+                    key: "Yellow",
+                    text: "Yellow",
+                    value: "#ECED9D"
+                },
+                {
+                    key: "Green",
+                    text: "Green",
+                    value: "#A8D8A5"
+                },
+                {
+                    key: "Blue",
+                    text: "Blue",
+                    value: "#93D1DC"
+                }, 
+            ]
         }
     }
 
@@ -37,9 +72,12 @@ export class IndivTag extends React.Component<Props, State>  {
         this.setState({editTagName: input});
     }
 
+    editTagColorInput(color:any){
+        this.setState({editTagColor: color.value});
+    }
+
     editTag(id:string){
-        // ADD LATER
-        this.props.editTag(this.state.editTagName, id);
+        this.props.editTag(this.state.editTagName, this.state.editTagColor, id);
     }
 
     closeModal = () => {
@@ -77,7 +115,7 @@ export class IndivTag extends React.Component<Props, State>  {
                     </Modal>
 
                     {/* EDIT BUTTON */}
-                    <Modal onClose={this.closeModal} open={showEditModal} size={"small"} 
+                    <Modal onClose={this.closeModal} open={showEditModal} size={"tiny"} 
                     trigger={<img onClick={() => {this.setState({ showEditModal: true }); 
                                             this.setState({editTagName: this.props.tag.name})}}
                     className = "edit" src = {edit} alt=""/>}>
@@ -90,6 +128,9 @@ export class IndivTag extends React.Component<Props, State>  {
                                             <input defaultValue={this.props.tag.name}
                                                 onChange={(e) => this.editTagNameInput(e.target.value)}/>
                                     </Form.Field> 
+                                    <label><strong>Colour</strong></label>
+                                    <Dropdown onChange={(e, { value }) => this.editTagColorInput({value})}
+                                    fluid selection options={this.state.tagcolors} />
                                 </Form>
                             </Modal.Description>
                         </Modal.Content>

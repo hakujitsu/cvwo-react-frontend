@@ -5,7 +5,7 @@ import '../Taglist.css';
 
 type Props = {
     tags:ITag[]
-    editTag: (newname:string, index:string) => void
+    editTag: (editname:string, editcolor:string, index:string) => void
     deleteTag: (index:string, name:string) => void
 }
 

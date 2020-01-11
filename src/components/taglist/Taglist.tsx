@@ -8,7 +8,7 @@ import 'semantic-ui-css/semantic.min.css';
 type Props = {
     tags: ITag[]
     addTag: (newname:string, newcolour:string) => void
-    editTag: (newname:string, index:string) => void
+    editTag: (editname:string, editcolor:string, index:string) => void
     deleteTag: (index:string, name:string) => void
 }
 
@@ -56,8 +56,7 @@ export class Taglist extends React.Component<Props, State> {
                     key: "Blue",
                     text: "Blue",
                     value: "#93D1DC"
-                },
-                
+                }, 
             ]
         }
     }
