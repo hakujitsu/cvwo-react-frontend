@@ -19,7 +19,6 @@ type State = {
     showModal: boolean
     newTaskName: string
     newTaskTags: string[]
-    renderedTasklist: ITask[]
 }
 
 export class FilteredTasklist extends React.Component<Props, State>  {
@@ -29,7 +28,6 @@ export class FilteredTasklist extends React.Component<Props, State>  {
             showModal: false,
             newTaskName: "",
             newTaskTags: [],
-            renderedTasklist: this.props.tasks.filter(task => this.tagChecker(task, this.props.tagname))
         }
     }
 
@@ -39,6 +37,10 @@ export class FilteredTasklist extends React.Component<Props, State>  {
                 return true;
             }
         }
+    }
+
+    componentDidUpdate(){
+        console.log('updated')
     }
 
     closeModal = () => {
@@ -68,42 +70,43 @@ export class FilteredTasklist extends React.Component<Props, State>  {
             showModal,
             newTaskName,
             newTaskTags,
-            renderedTasklist
         } = this.state
 
-    return (
-        <div className = "main">
-        <div className = "taskheader">{this.props.tagname}</div>
+        const newlist:ITask[] = this.props.tasks.filter(task => this.tagChecker(task, this.props.tagname))
 
-        <div className = "tasklist">
-            <Tasks tasks={renderedTasklist} tagoptions={this.props.tagoptions} deleteTask={this.props.deleteTask}
-            editTask={this.props.editTask} toggleTask={this.props.toggleTask}/>
+        return (
+            <div className = "main">
+            <div className = "taskheader">{this.props.tagname}</div>
 
-            <Modal onClose={this.closeModal} open={showModal} size={"small"} 
-            trigger={<div className = "addtask" onClick={() => this.setState({ showModal: true })}> Add task </div>}>
-                <Modal.Header>Add Task</Modal.Header>
-                <Modal.Content>
-                    <Modal.Description>
-                        <Form>
-                            <Form.Field>
-                                <div><strong>Task Name</strong></div>
-                                    <input onChange={(e) => this.newTaskNameInput(e.target.value)} />
-                            </Form.Field>
-                            <label><strong>Tags</strong></label>
-                            <Dropdown onChange={(e, { value }) => this.newTaskTagInput({value})}
-                            fluid multiple selection options={this.props.tagoptions} />
-                        </Form>
-                    </Modal.Description>
-                </Modal.Content>
-                <Modal.Actions>
-                    <Button positive disabled={!this.state.newTaskName}
-                    onClick={() => {this.closeModal(); this.createTask(newTaskName, newTaskTags)}}
-                    >Confirm</Button>
-                    <Button negative onClick={() => this.closeModal()}>Cancel</Button>
-                </Modal.Actions>
-            </Modal>
-        </div>
-        </div>
-    )
+            <div className = "tasklist">
+                <Tasks tasks={newlist} tagoptions={this.props.tagoptions} deleteTask={this.props.deleteTask}
+                editTask={this.props.editTask} toggleTask={this.props.toggleTask}/>
+
+                <Modal onClose={this.closeModal} open={showModal} size={"small"} 
+                trigger={<div className = "addtask" onClick={() => this.setState({ showModal: true })}> Add task </div>}>
+                    <Modal.Header>Add Task</Modal.Header>
+                    <Modal.Content>
+                        <Modal.Description>
+                            <Form>
+                                <Form.Field>
+                                    <div><strong>Task Name</strong></div>
+                                        <input onChange={(e) => this.newTaskNameInput(e.target.value)} />
+                                </Form.Field>
+                                <label><strong>Tags</strong></label>
+                                <Dropdown onChange={(e, { value }) => this.newTaskTagInput({value})}
+                                fluid multiple selection options={this.props.tagoptions} />
+                            </Form>
+                        </Modal.Description>
+                    </Modal.Content>
+                    <Modal.Actions>
+                        <Button positive disabled={!this.state.newTaskName}
+                        onClick={() => {this.closeModal(); this.createTask(newTaskName, newTaskTags)}}
+                        >Confirm</Button>
+                        <Button negative onClick={() => this.closeModal()}>Cancel</Button>
+                    </Modal.Actions>
+                </Modal>
+            </div>
+            </div>
+        )
     }
 }
