@@ -5,6 +5,7 @@ import {
     DELETE_TODO,
     EDIT_TODO,
     TOGGLE_TODO, 
+    SET_VISIBILITY_FILTER,
     ADD_TAG,
     DELETE_TAG,
     EDIT_TAG 
@@ -44,6 +45,11 @@ export function editTodo(newname:string, newtag:string[], index:string):TaskActi
 export function toggleTodo(index:string):TaskActionTypes {
   return { type: TOGGLE_TODO, 
            id : index }
+}
+export function setVisibilityFilter(filter:string):TaskActionTypes {
+  return { type: SET_VISIBILITY_FILTER, 
+           filter: filter 
+  }
 }
 
 export function addTag(newname:string, newcolour:string):TagActionTypes {

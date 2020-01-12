@@ -10,6 +10,7 @@ import {
     EDIT_TODO,
     DELETE_TODO,
     TOGGLE_TODO,
+    SET_VISIBILITY_FILTER,
     ADD_TAG,
     DELETE_TAG,
     EDIT_TAG 

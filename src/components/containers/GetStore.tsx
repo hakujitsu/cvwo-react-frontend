@@ -1,10 +1,8 @@
 import { connect } from 'react-redux'
 import { TaskTagListState } from '../../redux/types'
 import { SidebarTagList } from '../sidebar/sidebartaglist/SidebarTagList'
-import { Tasks } from '../tasklist/tasks/Tasks'
 import { Tasklist } from '../tasklist/Tasklist'
 import { Taglist } from '../taglist/Taglist'
-import { FilteredTasklist } from '../tasklist/FilteredTasklist'
 import { addTodo, deleteTodo, editTodo, toggleTodo, addTag, editTag, deleteTag } from '../../redux/actions';
 
 const mapStateToProps = (state: {taskReducer: TaskTagListState}) => void console.log({
@@ -24,10 +22,7 @@ const mapDispatchToProps = {
     deleteTag: deleteTag
 }
 
-export const TaskConnector = connect(mapStateToProps, mapDispatchToProps)(Tasks)
 export const TasklistConnector = connect(mapStateToProps, mapDispatchToProps)(Tasklist)
-export const FilteredTasklistConnector = connect(mapStateToProps, mapDispatchToProps)(FilteredTasklist)
-
 export const SidebarTagConnector = connect(mapStateToProps, mapDispatchToProps)(SidebarTagList)
 
 export const TaglistConnector = connect(mapStateToProps, mapDispatchToProps)(Taglist)
