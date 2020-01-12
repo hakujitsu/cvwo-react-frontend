@@ -1,7 +1,7 @@
 import React from 'react';
 import deletes from '../../../svgs/delete.svg';
 import edit from '../../../svgs/edit.svg';
-import { ITag, IDropdownOptions } from '../../../redux/tasks/types'
+import { ITag, IDropdownOptions } from '../../../redux/types'
 import { Button, Modal, Form, Dropdown } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css';
 import '../Taglist.css';

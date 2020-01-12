@@ -1,6 +1,6 @@
 import React from 'react';
 import './Taglist.css';
-import { ITag, IDropdownOptions } from '../../redux/tasks/types'
+import { ITag, IDropdownOptions } from '../../redux/types'
 import { Tags } from './tags/Tags'
 import { Button, Modal, Form, Dropdown } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css';

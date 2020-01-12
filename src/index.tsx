@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 
 import { Provider } from 'react-redux'
 import { createStore} from 'redux'
-import TaskList from './redux/tasks/reducers'
+import TaskList from './redux/reducers'
 
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 

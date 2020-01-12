@@ -1,5 +1,5 @@
 import React from 'react';
-import {ITag} from '../../../redux/tasks/types'
+import {ITag} from '../../../redux/types'
 import '../Sidebar.css';
 import IndivTag from './SidebarIndivTag'
 import {

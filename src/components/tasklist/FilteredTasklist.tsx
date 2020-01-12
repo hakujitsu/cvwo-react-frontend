@@ -1,13 +1,18 @@
 import React from 'react';
 import './Tasklist.css';
-import { ITag, IDropdownOptions } from '../../redux/types'
-import { TaskConnector } from '../containers/GetStore'
+import { ITask, ITag, IDropdownOptions } from '../../redux/types'
 import { Button, Modal, Form, Dropdown } from 'semantic-ui-react'
+import { Tasks } from './tasks/Tasks'
 
 type Props = {
+    tasks: ITask[]
     tags: ITag[]
     tagoptions: IDropdownOptions[]
+    tagname:string
     addTask: (newname:string, newtag: string[]) => void
+    deleteTask: (id:string) => void,
+    editTask: (newname:string, newtag:string[], index:string) => void,
+    toggleTask: (index:string) => void
 }
 
 type State = {
@@ -16,13 +21,13 @@ type State = {
     newTaskTags: string[]
 }
 
-export class Tasklist extends React.Component<Props, State>  {
+export class FilteredTasklist extends React.Component<Props, State>  {
     constructor(props:Props){
         super(props)
         this.state = {
             showModal: false,
             newTaskName: "",
-            newTaskTags: []
+            newTaskTags: [],
         }
     }
 
@@ -52,15 +57,16 @@ export class Tasklist extends React.Component<Props, State>  {
         const {
             showModal,
             newTaskName,
-            newTaskTags
+            newTaskTags,
         } = this.state
 
     return (
         <div className = "main">
-        <div className = "taskheader">All Tasks</div>
+        <div className = "taskheader">{this.props.tagname}</div>
 
         <div className = "tasklist">
-            <TaskConnector/>
+            <Tasks tasks={this.props.tasks} tagoptions={this.props.tagoptions} deleteTask={this.props.deleteTask}
+            editTask={this.props.editTask} toggleTask={this.props.toggleTask} tagname={this.props.tagname}/>
 
             <Modal onClose={this.closeModal} open={showModal} size={"small"} 
             trigger={<div className = "addtask" onClick={() => this.setState({ showModal: true })}> Add task </div>}>

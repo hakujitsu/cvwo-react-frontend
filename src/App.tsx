@@ -4,6 +4,7 @@ import Header from './components/header/Header';
 import Sidebar from './components/sidebar/Sidebar';
 import { TasklistConnector } from './components/containers/GetStore';
 import { TaglistConnector } from './components/containers/GetStore'
+import { TagReceiver } from './components/tasklist/TagReceiver'
 
 import {
   BrowserRouter as Router,
@@ -27,6 +28,9 @@ function App() {
           </Route>
           <Route path="/tags">
             <TaglistConnector />
+          </Route>
+          <Route path="/tag/:tagname">
+            <TagReceiver />
           </Route>
         </Switch>
  
