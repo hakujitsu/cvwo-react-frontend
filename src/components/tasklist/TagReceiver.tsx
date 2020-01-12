@@ -7,6 +7,6 @@ export function TagReceiver(){
     let tag = tagname as string  
     console.log(tag);
     return(
-        <FilteredTasklistConnector />
+        <FilteredTasklistConnector tagname={tag}/>
     )
 }

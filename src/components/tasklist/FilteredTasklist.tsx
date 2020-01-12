@@ -8,6 +8,7 @@ type Props = {
     tasks: ITask[],
     tags: ITag[]
     tagoptions: IDropdownOptions[],
+    tagname: string,
     addTask: (newname:string, newtag: string[]) => void
     deleteTask: (id:string) => void,
     editTask: (newname:string, newtag:string[], index:string) => void,
@@ -18,6 +19,7 @@ type State = {
     showModal: boolean
     newTaskName: string
     newTaskTags: string[]
+    renderedTasklist: ITask[]
 }
 
 export class FilteredTasklist extends React.Component<Props, State>  {
@@ -26,7 +28,16 @@ export class FilteredTasklist extends React.Component<Props, State>  {
         this.state = {
             showModal: false,
             newTaskName: "",
-            newTaskTags: []
+            newTaskTags: [],
+            renderedTasklist: this.props.tasks.filter(task => this.tagChecker(task, this.props.tagname))
+        }
+    }
+
+    tagChecker(task:ITask, tagname:string){
+        for(const index in task.tag){
+            if(task.tag[index] == tagname){
+                return true;
+            }
         }
     }
 
@@ -56,15 +67,16 @@ export class FilteredTasklist extends React.Component<Props, State>  {
         const {
             showModal,
             newTaskName,
-            newTaskTags
+            newTaskTags,
+            renderedTasklist
         } = this.state
 
     return (
         <div className = "main">
-        <div className = "taskheader">All Tasks</div>
+        <div className = "taskheader">{this.props.tagname}</div>
 
         <div className = "tasklist">
-            <Tasks tasks={this.props.tasks} tagoptions={this.props.tagoptions} deleteTask={this.props.deleteTask}
+            <Tasks tasks={renderedTasklist} tagoptions={this.props.tagoptions} deleteTask={this.props.deleteTask}
             editTask={this.props.editTask} toggleTask={this.props.toggleTask}/>
 
             <Modal onClose={this.closeModal} open={showModal} size={"small"} 
